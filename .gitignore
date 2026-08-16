@@ -1,0 +1,22 @@
+node_modules/
+.next/
+out/
+build/
+
+# Baza danych z sesjami — dane wrażliwe, NIGDY nie trafiają do repozytorium
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Kopie zapasowe / eksporty
+kopie-zapasowe/
+*.csv
+!przyklad*.csv
+
+.env
+.env.local
+.DS_Store
+next-env.d.ts
+*.tsbuildinfo

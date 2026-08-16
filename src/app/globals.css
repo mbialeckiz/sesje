@@ -1,0 +1,756 @@
+:root {
+  --fiolet: #4a2f9e;
+  --fiolet-ciemny: #3a2480;
+  --zielen: #2eae7d;
+  --zielen-ciemna: #239166;
+  --czerwien: #d6425c;
+  --czerwien-ciemna: #b8324a;
+  --tekst: #2c2c33;
+  --tekst-jasny: #6b6b78;
+  --ramka: #dcdce4;
+  --tlo: #ffffff;
+  --tlo-szare: #f6f6f9;
+  --tlo-ostrzezenie: #fdf6e3;
+  --ramka-ostrzezenie: #e8d9a8;
+  --tekst-ostrzezenie: #7a6520;
+  --promien: 10px;
+  --cien: 0 1px 3px rgba(20, 20, 40, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  color: var(--tekst);
+  background: var(--tlo);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--fiolet);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: 2.4rem;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+a {
+  color: var(--zielen-ciemna);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------- struktura */
+
+.pasek {
+  border-bottom: 1px solid var(--ramka);
+  background: var(--tlo-szare);
+}
+
+.pasek-wnetrze {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.pasek-nazwa {
+  font-weight: 700;
+  color: var(--fiolet);
+  font-size: 1.05rem;
+}
+
+.pasek-nawigacja {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  font-size: 0.92rem;
+}
+
+.strona {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 5rem;
+}
+
+.powrot {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.uwaga {
+  background: var(--tlo-ostrzezenie);
+  border: 1px solid var(--ramka-ostrzezenie);
+  color: var(--tekst-ostrzezenie);
+  border-radius: var(--promien);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.blad {
+  background: #fdecef;
+  border: 1px solid #f3bcc6;
+  color: #9c2740;
+  border-radius: var(--promien);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sukces {
+  background: #e9f8f1;
+  border: 1px solid #a9e0c8;
+  color: #1c7a56;
+  border-radius: var(--promien);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.pusto {
+  text-align: center;
+  color: var(--tekst-jasny);
+  padding: 3rem 1rem;
+}
+
+/* ------------------------------------------------------------- przyciski */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.btn-fiolet {
+  background: var(--fiolet);
+  color: #fff;
+}
+
+.btn-zielony {
+  background: var(--zielen);
+  color: #fff;
+}
+
+.btn-czerwony {
+  background: var(--czerwien);
+  color: #fff;
+}
+
+.btn-obrys {
+  background: transparent;
+  color: var(--fiolet);
+  border: 1px solid var(--fiolet);
+}
+
+.btn-maly {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.btn-tekst {
+  background: none;
+  border: none;
+  color: var(--zielen-ciemna);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+
+.btn-tekst:hover {
+  text-decoration: underline;
+}
+
+.btn-tekst.usun {
+  color: var(--czerwien);
+}
+
+.rzad-przyciskow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* ------------------------------------------------------------ formularze */
+
+label,
+.etykieta {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.etykieta-opis {
+  font-weight: 400;
+  color: var(--tekst-jasny);
+  font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--ramka);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--tekst);
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--zielen);
+  outline-offset: -1px;
+  border-color: var(--zielen);
+}
+
+input:disabled,
+input[readonly] {
+  background: var(--tlo-szare);
+  color: var(--tekst-jasny);
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.pole {
+  margin-bottom: 1.5rem;
+}
+
+.pole-wiersz {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pole-wiersz > * {
+  flex: 1 1 14rem;
+}
+
+.wymagane::after {
+  content: " *";
+  color: var(--czerwien);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------- wybór typu (kółka) */
+
+.typy {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.typ {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 7.5rem;
+}
+
+.typ-kolo {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border: 2px solid transparent;
+  color: var(--zielen-ciemna);
+  transition: all 0.15s ease;
+}
+
+.typ-nazwa {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--zielen-ciemna);
+  text-align: center;
+}
+
+.typ[aria-pressed="true"] .typ-kolo {
+  background: var(--zielen);
+  color: #fff;
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+}
+
+.typ[aria-pressed="true"] .typ-nazwa {
+  color: var(--tekst);
+}
+
+/* --------------------------------------------------------- skala 0 – 10 */
+
+.skala {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.skala-btn {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 8px;
+  border: 2px solid currentColor;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.skala-btn:hover {
+  background: var(--tlo-szare);
+}
+
+/* Wypełnienie bierze kolor z klasy s0–s10; biała cyfra siedzi w <span>,
+   bo zmiana `color` na przycisku zmieniłaby też jego `currentColor`. */
+.skala-btn[aria-pressed="true"] {
+  background: currentColor;
+}
+
+.skala-btn[aria-pressed="true"] span {
+  color: #fff;
+}
+
+.s0 { color: #2f7fd1; }
+.s1 { color: #35a86b; }
+.s2 { color: #4aa85c; }
+.s3 { color: #66a44f; }
+.s4 { color: #8a8b3f; }
+.s5 { color: #a08b3a; }
+.s6 { color: #b07a3a; }
+.s7 { color: #bd6238; }
+.s8 { color: #c44f34; }
+.s9 { color: #cc3a30; }
+.s10 { color: #d32f2f; }
+
+/* ------------------------------------------------------------ karty/box */
+
+.karta {
+  border: 1px solid var(--ramka);
+  border-radius: var(--promien);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: var(--tlo);
+}
+
+.karta-naglowek {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.karta-tytul {
+  font-weight: 700;
+  color: var(--fiolet);
+}
+
+/* ------------------------------------------------------------- liczniki */
+
+.liczniki {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.licznik {
+  border: 1px solid var(--zielen);
+  border-radius: var(--promien);
+  padding: 1.1rem 1.25rem;
+  text-align: center;
+  position: relative;
+  background: var(--tlo);
+}
+
+.licznik-nazwa {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tekst-jasny);
+}
+
+.licznik-wartosc {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--zielen);
+  line-height: 1.2;
+}
+
+.licznik-cel {
+  font-size: 1.1rem;
+  color: var(--tekst-jasny);
+  font-weight: 500;
+}
+
+.licznik-pasek {
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--tlo-szare);
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+.licznik-wypelnienie {
+  height: 100%;
+  background: var(--zielen);
+  border-radius: 999px;
+}
+
+.licznik-info {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  border: 1px solid var(--tekst-jasny);
+  color: var(--tekst-jasny);
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+}
+
+/* --------------------------------------------------------------- tabela */
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela th {
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--tekst);
+  border-bottom: 2px solid var(--ramka);
+  padding: 0.7rem 0.6rem;
+}
+
+.tabela td {
+  padding: 0.75rem 0.6rem;
+  border-bottom: 1px solid var(--ramka);
+  vertical-align: middle;
+}
+
+.tabela .wiersz-sesji td {
+  background: var(--tlo-szare);
+  font-size: 0.92rem;
+}
+
+.do-prawej {
+  text-align: right;
+}
+
+.znacznik {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 999px;
+  padding: 0.1rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
+.znacznik-ja {
+  background: var(--zielen);
+  color: #fff;
+}
+
+.znacznik-serce {
+  background: var(--czerwien);
+  color: #fff;
+}
+
+.znacznik-szary {
+  background: var(--tlo-szare);
+  color: var(--tekst-jasny);
+  border: 1px solid var(--ramka);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------- mapa emocji  */
+
+.mapa {
+  border: 1px solid var(--ramka);
+  border-radius: var(--promien);
+  overflow: hidden;
+}
+
+.mapa-naglowek,
+.mapa-wiersz {
+  display: grid;
+  grid-template-columns: 13rem 1fr 1fr;
+}
+
+.mapa-naglowek > div {
+  background: var(--fiolet);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.9rem;
+}
+
+.mapa-wiersz > div {
+  border-top: 1px solid var(--ramka);
+  padding: 0.6rem 0.7rem;
+}
+
+.mapa-wiersz > div + div {
+  border-left: 1px solid var(--ramka);
+}
+
+.mapa-narzady {
+  background: var(--tlo-szare);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mapa-narzady small {
+  display: block;
+  font-weight: 400;
+  color: var(--tekst-jasny);
+  font-size: 0.78rem;
+}
+
+.mapa-emocja {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.28rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--tekst);
+  cursor: pointer;
+}
+
+.mapa-emocja:hover {
+  background: #eaf7f1;
+  border-color: var(--zielen);
+}
+
+.mapa-emocja small {
+  color: var(--tekst-jasny);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 720px) {
+  .mapa-naglowek,
+  .mapa-wiersz {
+    grid-template-columns: 1fr;
+  }
+  .mapa-wiersz > div + div {
+    border-left: none;
+  }
+}
+
+/* ------------------------------------------------------- lista emocji  */
+
+.emocja-pozycja {
+  border: 1px solid var(--ramka);
+  border-radius: var(--promien);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.6rem;
+  background: var(--tlo);
+}
+
+.emocja-glowna {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.emocja-nazwa {
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+.emocja-meta {
+  color: var(--tekst-jasny);
+  font-size: 0.85rem;
+}
+
+.emocja-szczegoly {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.emocja-szczegoly label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tekst-jasny);
+}
+
+.emocja-szczegoly input,
+.emocja-szczegoly select {
+  padding: 0.4rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+.przyciski-pozycji {
+  margin-left: auto;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------- modal  */
+
+.modal-tlo {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 20, 45, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.modal {
+  background: #fff;
+  border-radius: var(--promien);
+  max-width: 62rem;
+  width: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 12px 40px rgba(20, 20, 40, 0.25);
+}
+
+.modal-naglowek {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------- druk  */
+
+.tylko-druk {
+  display: none;
+}
+
+@media print {
+  .pasek,
+  .powrot,
+  .rzad-przyciskow,
+  .bez-druku {
+    display: none !important;
+  }
+
+  .tylko-druk {
+    display: block;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .strona {
+    padding: 0;
+    max-width: none;
+  }
+
+  .karta,
+  .emocja-pozycja {
+    break-inside: avoid;
+  }
+
+  h1 {
+    font-size: 20pt;
+  }
+}
