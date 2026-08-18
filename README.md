@@ -22,6 +22,28 @@ Emocji oraz eksport danych.
 - **Eksport i kopia zapasowa** — pełna kopia JSON (z odtwarzaniem) oraz zestawienie CSV,
   jeden wiersz na uwolnioną emocję, gotowe do otwarcia w Excelu.
 
+## Wymagania
+
+Potrzebny jest **Node.js w wersji 20 lub nowszej** — `npm` instaluje się razem z nim.
+Jeśli terminal odpowiada `command not found: npm`, to znaczy, że Node.js nie jest
+jeszcze zainstalowany.
+
+Sprawdzenie:
+
+```bash
+node -v      # powinno pokazać np. v22.x.x
+npm -v
+```
+
+Instalacja na macOS — wystarczy jedno z dwóch:
+
+- pobierz instalator LTS ze strony <https://nodejs.org/en/download> (plik `.pkg`,
+  klikasz „dalej", po instalacji zamknij i otwórz terminal na nowo),
+- albo, jeśli masz Homebrew: `brew install node`.
+
+Na Windowsie pobierz instalator `.msi` z tej samej strony, na Linuksie użyj menedżera
+pakietów swojej dystrybucji.
+
 ## Uruchomienie
 
 ```bash
