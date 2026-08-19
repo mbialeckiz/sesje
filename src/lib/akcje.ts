@@ -133,7 +133,7 @@ function odczytajSesje(formData: FormData): DaneSesji {
       const rodzaj = tekst(w.rodzaj, 30);
       return {
         emocja_id: tekst(w.emocja_id, 60),
-        rodzaj: ID_RODZAJOW.has(rodzaj) ? rodzaj : "wlasna",
+        rodzaj: ID_RODZAJOW.has(rodzaj) ? rodzaj : "powszechna",
         mur_serca: w.mur_serca === true,
         wiek: tekst(w.wiek, 60),
         zrodlo: tekst(w.zrodlo, 120),

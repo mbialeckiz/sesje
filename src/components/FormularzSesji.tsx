@@ -10,7 +10,7 @@ import {
   TYPY_SESJI,
   emocja as znajdzEmocje,
   nazwaEmocji,
-  rodzajWymagaZrodla,
+  etykietySzczegolow,
   type Emocja,
 } from "@/lib/emocje";
 import type { StanSesji } from "@/lib/stanSesji";
@@ -60,7 +60,7 @@ export default function FormularzSesji({
       ...p,
       emocje: [
         ...p.emocje,
-        { emocja_id: e.id, rodzaj: "wlasna", mur_serca: false, wiek: "", zrodlo: "", notatka: "" },
+        { emocja_id: e.id, rodzaj: "powszechna", mur_serca: false, wiek: "", zrodlo: "", notatka: "" },
       ],
     }));
 
@@ -222,6 +222,7 @@ export default function FormularzSesji({
 
       {stan.emocje.map((e, i) => {
         const kat = znajdzEmocje(e.emocja_id);
+        const etykiety = etykietySzczegolow(e.rodzaj);
         return (
           <div className="emocja-pozycja" key={`${e.emocja_id}-${i}`}>
             <div className="emocja-glowna">
@@ -268,29 +269,27 @@ export default function FormularzSesji({
                 </select>
               </div>
               <div>
-                <label htmlFor={`wiek-${i}`}>Wiek / okoliczności</label>
+                <label htmlFor={`wiek-${i}`}>{etykiety.wiek}</label>
                 <input
                   id={`wiek-${i}`}
                   type="text"
                   value={e.wiek}
-                  placeholder="np. 7 lat, w łonie"
                   onChange={(ev) => zmienEmocje(i, { wiek: ev.target.value })}
                 />
               </div>
-              {rodzajWymagaZrodla(e.rodzaj) && (
+              {etykiety.zrodlo && (
                 <div>
-                  <label htmlFor={`zrodlo-${i}`}>Od kogo / z kim</label>
+                  <label htmlFor={`zrodlo-${i}`}>{etykiety.zrodlo}</label>
                   <input
                     id={`zrodlo-${i}`}
                     type="text"
                     value={e.zrodlo}
-                    placeholder="np. od matki"
                     onChange={(ev) => zmienEmocje(i, { zrodlo: ev.target.value })}
                   />
                 </div>
               )}
               <div>
-                <label htmlFor={`notatka-${i}`}>Notatka</label>
+                <label htmlFor={`notatka-${i}`}>{etykiety.notatka}</label>
                 <input
                   id={`notatka-${i}`}
                   type="text"
@@ -317,6 +316,7 @@ export default function FormularzSesji({
           onWybierz={dodajEmocje}
           onZamknij={() => setMapaOtwarta(false)}
           liczbaWybranych={stan.emocje.length}
+          problemy={nazwaneProblemy.map((p) => p.nazwa)}
         />
       )}
 

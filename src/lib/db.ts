@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS emocje_sesji (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   sesja_id   INTEGER NOT NULL REFERENCES sesje(id) ON DELETE CASCADE,
   emocja_id  TEXT    NOT NULL,
-  rodzaj     TEXT    NOT NULL DEFAULT 'wlasna',
+  rodzaj     TEXT    NOT NULL DEFAULT 'powszechna',
   mur_serca  INTEGER NOT NULL DEFAULT 0,
   wiek       TEXT,
   zrodlo     TEXT,
@@ -75,6 +75,10 @@ function utworzPolaczenie(): Database.Database {
   baza.pragma("journal_mode = WAL");
   baza.pragma("foreign_keys = ON");
   baza.exec(SCHEMA);
+
+  // Nazwa rodzaju emocji ujednolicona z Kartą Kodu Emocji: „własna" → „powszechna".
+  baza.prepare("UPDATE emocje_sesji SET rodzaj = 'powszechna' WHERE rodzaj = 'wlasna'").run();
+
   return baza;
 }
 

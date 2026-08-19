@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { EMOCJE, WIERSZE, type Emocja } from "@/lib/emocje";
+import TabelaMapyEmocji from "./TabelaMapyEmocji";
+import { EMOCJE, type Emocja } from "@/lib/emocje";
+import { pytanieZProblemem } from "@/lib/materialy";
 
-/** Usuwa polskie znaki diakrytyczne, żeby „zalosc" znalazło „Żałobę". */
+/** Usuwa polskie znaki diakrytyczne, żeby „zalosc" znalazło „Żałość". */
 function uprosc(tekst: string): string {
   return tekst
     .toLowerCase()
@@ -13,17 +15,20 @@ function uprosc(tekst: string): string {
 }
 
 /**
- * Modal z pełną Mapą Emocji — klikasz emocję zamiast wpisywać ją ręcznie.
+ * Modal z pełną Kartą Kodu Emocji — klikasz emocję zamiast wpisywać ją ręcznie.
  * Zostaje otwarty po wyborze, bo w jednej sesji uwalnia się zwykle kilka emocji.
  */
 export default function WybieraczEmocji({
   onWybierz,
   onZamknij,
   liczbaWybranych,
+  problemy = [],
 }: {
   onWybierz: (emocja: Emocja) => void;
   onZamknij: () => void;
   liczbaWybranych: number;
+  /** Nazwy problemów z sesji — wchodzą w miejsce podkreślnika w pytaniu otwierającym. */
+  problemy?: string[];
 }) {
   const [szukaj, setSzukaj] = useState("");
   const [ostatnia, setOstatnia] = useState<string | null>(null);
@@ -46,7 +51,7 @@ export default function WybieraczEmocji({
 
   const pasujace = useMemo(() => {
     const fraza = uprosc(szukaj.trim());
-    if (!fraza) return new Set(EMOCJE.map((e) => e.id));
+    if (!fraza) return undefined;
     return new Set(
       EMOCJE.filter((e) => uprosc(e.pl).includes(fraza) || uprosc(e.en).includes(fraza)).map(
         (e) => e.id,
@@ -59,15 +64,33 @@ export default function WybieraczEmocji({
     setOstatnia(e.pl);
   };
 
+  const nazwyProblemow = problemy.map((p) => p.trim()).filter(Boolean);
+
   return (
-    <div className="modal-tlo" role="dialog" aria-modal="true" aria-label="Mapa Emocji">
+    <div className="modal-tlo" role="dialog" aria-modal="true" aria-label="Karta Kodu Emocji">
       <div className="modal">
         <div className="modal-naglowek">
-          <h2 style={{ margin: 0 }}>Mapa Emocji</h2>
+          <h2 style={{ margin: 0 }}>Karta Kodu Emocji</h2>
           <button type="button" className="btn btn-obrys btn-maly" onClick={onZamknij}>
             Gotowe{liczbaWybranych > 0 ? ` (${liczbaWybranych})` : ""}
           </button>
         </div>
+
+        <ol className="pytanie-otwierajace">
+          {nazwyProblemow.length > 0 ? (
+            nazwyProblemow.map((p) => (
+              <li key={p}>
+                Zapytaj: <strong>„{pytanieZProblemem(p)}”</strong>
+              </li>
+            ))
+          ) : (
+            <li>
+              Zapytaj: <strong>„{pytanieZProblemem()}”</strong>
+            </li>
+          )}
+          <li>Określ, jakiego typu jest to uwięziona emocja (rodzaj wybierzesz przy emocji).</li>
+          <li>Określ kolumnę, potem wiersz, potem konkretną emocję i kliknij ją poniżej.</li>
+        </ol>
 
         <div className="pole">
           <input
@@ -86,47 +109,9 @@ export default function WybieraczEmocji({
           </p>
         )}
 
-        <div className="mapa">
-          <div className="mapa-naglowek">
-            <div>Narządy</div>
-            <div>Kolumna A</div>
-            <div>Kolumna B</div>
-          </div>
-          {WIERSZE.map((w) => {
-            const wKolumnie = (kolumna: "A" | "B") =>
-              EMOCJE.filter(
-                (e) => e.wiersz === w.numer && e.kolumna === kolumna && pasujace.has(e.id),
-              );
-            const a = wKolumnie("A");
-            const b = wKolumnie("B");
-            if (a.length === 0 && b.length === 0) return null;
+        <TabelaMapyEmocji onWybierz={wybierz} widoczne={pasujace} />
 
-            return (
-              <div className="mapa-wiersz" key={w.numer}>
-                <div className="mapa-narzady">
-                  {w.numer}. {w.narzady}
-                  <small>{w.narzadyEn}</small>
-                </div>
-                {[a, b].map((lista, i) => (
-                  <div key={i}>
-                    {lista.map((e) => (
-                      <button
-                        key={e.id}
-                        type="button"
-                        className="mapa-emocja"
-                        onClick={() => wybierz(e)}
-                      >
-                        {e.pl} <small>({e.en})</small>
-                      </button>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-
-        {pasujace.size === 0 && (
+        {pasujace?.size === 0 && (
           <p className="pusto">Żadna emocja nie pasuje do frazy „{szukaj}".</p>
         )}
       </div>

@@ -10,12 +10,21 @@ Emocji oraz eksport danych.
   (w trakcie / w pełni usunięty), notatki.
 - **Sesje** — data, typ (osobista / na odległość / przez pośrednika), do 3 problemów
   z nasileniem 0–10 przed i po sesji, komentarz.
-- **Klikalna Mapa Emocji** — zamiast wpisywania emocji ręcznie wybierasz je z pełnej
-  tablicy 60 emocji (6 wierszy narządów × kolumny A i B). Do każdej emocji zapisujesz
-  rodzaj (własna, odziedziczona, przejęta, współdzielona, prenatalna, przedpoczęciowa),
-  wiek/okoliczności uwięzienia, od kogo pochodzi oraz czy należy do Muru Serca.
-  Wyszukiwarka działa też bez polskich znaków („zaloba" znajdzie „Żałobę") i po
+- **Klikalna Karta Kodu Emocji** — zamiast wpisywania emocji ręcznie wybierasz je z pełnej
+  tablicy 60 emocji (6 wierszy narządów × kolumny A i B), z nazwami dokładnie takimi jak
+  w materiałach Poziomu 1. Nad kartą widnieje pytanie otwierające dekodowanie, z wpisaną
+  nazwą problemu z bieżącej sesji. Do każdej emocji zapisujesz jeden z 6 rodzajów
+  (przed poczęciem, odziedziczona, prenatalna, powszechna, przejęta, współdzielona)
+  oraz szczegóły — pola dopasowują się do rodzaju zgodnie z tabelą z kroku 4 materiałów
+  (genealogia, trymestr, wiek wystąpienia, od kogo, z kim, zdarzenie życiowe).
+  Wyszukiwarka działa też bez polskich znaków („zalosc" znajdzie „Żałość") i po
   angielskich nazwach z oryginalnej tablicy.
+- **Materiały Poziomu 1 pod ręką** — komplet treści z materiałów certyfikacyjnych
+  (podstawowe wartości, słowniczek, wzory na które uważać, self-testing i testowanie
+  innych z opisem każdej metody, Emotion Code krok po kroku, przebieg sesji, 6 rodzajów
+  uwięzionych emocji, dekodowanie, kroki do zniesienia Muru Serca, bezpieczeństwo
+  zwierząt). Otwierają się w oknie nad aplikacją z górnego paska, więc możesz sprawdzić
+  procedurę w trakcie wypełniania sesji, nie tracąc niezapisanego formularza.
 - **Liczniki postępu** — sesje własne, sesje z kontynuacją, usunięte Mury Serca, sesje
   ze zwierzętami. Cele są edytowalne w Ustawieniach (domyślnie wymagania Poziomu 1).
 - **Raport sesji** — czytelny wydruk do zapisania jako PDF lub wysłania klientowi.
@@ -79,7 +88,8 @@ src/
     api/eksport/          pobieranie CSV i JSON
   components/             formularze, skala 0–10, modal Mapy Emocji, tabela klientów
   lib/
-    emocje.ts             katalog 60 emocji (PL/EN, wiersz, kolumna) i rodzaje emocji
+    emocje.ts             katalog 60 emocji (PL/EN, wiersz, kolumna) i 6 rodzajów emocji
+    materialy.ts          treść materiałów Poziomu 1 w postaci bloków do wyświetlenia
     db.ts                 połączenie SQLite i schemat bazy
     dane.ts               odczyt i zapis danych
     akcje.ts              akcje formularzy wraz z walidacją

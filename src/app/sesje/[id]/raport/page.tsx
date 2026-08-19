@@ -90,7 +90,7 @@ export default async function Raport({ params }: { params: Promise<{ id: string 
           {dane.emocje.map((e) => {
             const kat = znajdzEmocje(e.emocja_id);
             const dodatki = [
-              e.rodzaj !== "wlasna" ? nazwaRodzaju(e.rodzaj).toLowerCase() : null,
+              e.rodzaj !== "powszechna" ? nazwaRodzaju(e.rodzaj).toLowerCase() : null,
               e.zrodlo,
               e.wiek,
               e.mur_serca === 1 ? "z Muru Serca" : null,

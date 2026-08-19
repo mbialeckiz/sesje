@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PrzyciskMaterialow from "@/components/PrzyciskMaterialow";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="pasek-nawigacja">
               <Link href="/">Portfolio</Link>
               <Link href="/mapa-emocji">Mapa Emocji</Link>
+              <PrzyciskMaterialow />
               <Link href="/ustawienia">Ustawienia</Link>
             </nav>
           </div>
