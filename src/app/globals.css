@@ -1,5 +1,7 @@
 :root {
+  color-scheme: light;
   --fiolet: #4a2f9e;
+  --fiolet-tekst: #4a2f9e;
   --fiolet-ciemny: #3a2480;
   --zielen: #2eae7d;
   --zielen-ciemna: #239166;
@@ -7,14 +9,170 @@
   --czerwien-ciemna: #b8324a;
   --tekst: #2c2c33;
   --tekst-jasny: #6b6b78;
+  --na-kolorze: #ffffff;
   --ramka: #dcdce4;
   --tlo: #ffffff;
   --tlo-szare: #f6f6f9;
+  --tlo-pole: #ffffff;
+  --tlo-modal: #ffffff;
+  --zaslona: rgba(24, 20, 45, 0.55);
+  --cien-modal: 0 12px 40px rgba(20, 20, 40, 0.25);
+  --hover-mapy: #eaf7f1;
   --tlo-ostrzezenie: #fdf6e3;
   --ramka-ostrzezenie: #e8d9a8;
   --tekst-ostrzezenie: #7a6520;
+  --tlo-blad: #fdecef;
+  --ramka-blad: #f3bcc6;
+  --tekst-blad: #9c2740;
+  --tlo-sukces: #e9f8f1;
+  --ramka-sukces: #a9e0c8;
+  --tekst-sukces: #1c7a56;
+  --s0: #2f7fd1;
+  --s1: #35a86b;
+  --s2: #4aa85c;
+  --s3: #66a44f;
+  --s4: #8a8b3f;
+  --s5: #a08b3a;
+  --s6: #b07a3a;
+  --s7: #bd6238;
+  --s8: #c44f34;
+  --s9: #cc3a30;
+  --s10: #d32f2f;
   --promien: 10px;
-  --cien: 0 1px 3px rgba(20, 20, 40, 0.08);
+}
+
+/* Tryb ciemny podąża za ustawieniem systemu, dopóki nie wybrano jasnego ręcznie. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-motyw="jasny"]) {
+    color-scheme: dark;
+    --fiolet: #6b4fd0;
+    --fiolet-tekst: #b9a7f5;
+    --fiolet-ciemny: #5a3fbb;
+    --zielen: #35c08c;
+    --zielen-ciemna: #54d5a6;
+    --czerwien: #e2596f;
+    --czerwien-ciemna: #c9455b;
+    --tekst: #e6e6ec;
+    --tekst-jasny: #9a9aab;
+    --na-kolorze: #ffffff;
+    --ramka: #34343f;
+    --tlo: #14141a;
+    --tlo-szare: #1c1c25;
+    --tlo-pole: #1c1c25;
+    --tlo-modal: #1e1e28;
+    --zaslona: rgba(0, 0, 0, 0.7);
+    --cien-modal: 0 12px 40px rgba(0, 0, 0, 0.6);
+    --hover-mapy: #1b2f27;
+    --tlo-ostrzezenie: #2c2617;
+    --ramka-ostrzezenie: #57491f;
+    --tekst-ostrzezenie: #e6cd8a;
+    --tlo-blad: #2d1820;
+    --ramka-blad: #68303f;
+    --tekst-blad: #f2a3b3;
+    --tlo-sukces: #14291f;
+    --ramka-sukces: #2c6349;
+    --tekst-sukces: #7fe0b4;
+    --s0: #6aa9e8;
+    --s1: #4fc98a;
+    --s2: #63cb7c;
+    --s3: #8fce6f;
+    --s4: #bcbc5c;
+    --s5: #cfb655;
+    --s6: #dda45a;
+    --s7: #e78a58;
+    --s8: #ec7458;
+    --s9: #f2635a;
+    --s10: #f5605c;
+  }
+}
+
+/* Ręczny wybór z przełącznika w pasku wygrywa nad ustawieniem systemu. */
+:root[data-motyw="ciemny"] {
+  color-scheme: dark;
+  --fiolet: #6b4fd0;
+  --fiolet-tekst: #b9a7f5;
+  --fiolet-ciemny: #5a3fbb;
+  --zielen: #35c08c;
+  --zielen-ciemna: #54d5a6;
+  --czerwien: #e2596f;
+  --czerwien-ciemna: #c9455b;
+  --tekst: #e6e6ec;
+  --tekst-jasny: #9a9aab;
+  --na-kolorze: #ffffff;
+  --ramka: #34343f;
+  --tlo: #14141a;
+  --tlo-szare: #1c1c25;
+  --tlo-pole: #1c1c25;
+  --tlo-modal: #1e1e28;
+  --zaslona: rgba(0, 0, 0, 0.7);
+  --cien-modal: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --hover-mapy: #1b2f27;
+  --tlo-ostrzezenie: #2c2617;
+  --ramka-ostrzezenie: #57491f;
+  --tekst-ostrzezenie: #e6cd8a;
+  --tlo-blad: #2d1820;
+  --ramka-blad: #68303f;
+  --tekst-blad: #f2a3b3;
+  --tlo-sukces: #14291f;
+  --ramka-sukces: #2c6349;
+  --tekst-sukces: #7fe0b4;
+  --s0: #6aa9e8;
+  --s1: #4fc98a;
+  --s2: #63cb7c;
+  --s3: #8fce6f;
+  --s4: #bcbc5c;
+  --s5: #cfb655;
+  --s6: #dda45a;
+  --s7: #e78a58;
+  --s8: #ec7458;
+  --s9: #f2635a;
+  --s10: #f5605c;
+}
+
+/* Drukujemy zawsze na jasno — ciemne tło zjadałoby tusz. */
+@media print {
+  :root,
+  :root[data-motyw="ciemny"] {
+    color-scheme: light;
+    --fiolet: #4a2f9e;
+    --fiolet-tekst: #4a2f9e;
+    --fiolet-ciemny: #3a2480;
+    --zielen: #2eae7d;
+    --zielen-ciemna: #239166;
+    --czerwien: #d6425c;
+    --czerwien-ciemna: #b8324a;
+    --tekst: #2c2c33;
+    --tekst-jasny: #6b6b78;
+    --na-kolorze: #ffffff;
+    --ramka: #dcdce4;
+    --tlo: #ffffff;
+    --tlo-szare: #f6f6f9;
+    --tlo-pole: #ffffff;
+    --tlo-modal: #ffffff;
+    --zaslona: rgba(24, 20, 45, 0.55);
+    --cien-modal: 0 12px 40px rgba(20, 20, 40, 0.25);
+    --hover-mapy: #eaf7f1;
+    --tlo-ostrzezenie: #fdf6e3;
+    --ramka-ostrzezenie: #e8d9a8;
+    --tekst-ostrzezenie: #7a6520;
+    --tlo-blad: #fdecef;
+    --ramka-blad: #f3bcc6;
+    --tekst-blad: #9c2740;
+    --tlo-sukces: #e9f8f1;
+    --ramka-sukces: #a9e0c8;
+    --tekst-sukces: #1c7a56;
+    --s0: #2f7fd1;
+    --s1: #35a86b;
+    --s2: #4aa85c;
+    --s3: #66a44f;
+    --s4: #8a8b3f;
+    --s5: #a08b3a;
+    --s6: #b07a3a;
+    --s7: #bd6238;
+    --s8: #c44f34;
+    --s9: #cc3a30;
+    --s10: #d32f2f;
+  }
 }
 
 * {
@@ -40,7 +198,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--fiolet);
+  color: var(--fiolet-tekst);
   line-height: 1.2;
   margin: 0 0 0.5em;
 }
@@ -87,7 +245,7 @@ a:hover {
 
 .pasek-nazwa {
   font-weight: 700;
-  color: var(--fiolet);
+  color: var(--fiolet-tekst);
   font-size: 1.05rem;
 }
 
@@ -120,18 +278,18 @@ a:hover {
 }
 
 .blad {
-  background: #fdecef;
-  border: 1px solid #f3bcc6;
-  color: #9c2740;
+  background: var(--tlo-blad);
+  border: 1px solid var(--ramka-blad);
+  color: var(--tekst-blad);
   border-radius: var(--promien);
   padding: 0.85rem 1.1rem;
   margin-bottom: 1.25rem;
 }
 
 .sukces {
-  background: #e9f8f1;
-  border: 1px solid #a9e0c8;
-  color: #1c7a56;
+  background: var(--tlo-sukces);
+  border: 1px solid var(--ramka-sukces);
+  color: var(--tekst-sukces);
   border-radius: var(--promien);
   padding: 0.85rem 1.1rem;
   margin-bottom: 1.25rem;
@@ -167,23 +325,23 @@ a:hover {
 
 .btn-fiolet {
   background: var(--fiolet);
-  color: #fff;
+  color: var(--na-kolorze);
 }
 
 .btn-zielony {
   background: var(--zielen);
-  color: #fff;
+  color: var(--na-kolorze);
 }
 
 .btn-czerwony {
   background: var(--czerwien);
-  color: #fff;
+  color: var(--na-kolorze);
 }
 
 .btn-obrys {
   background: transparent;
-  color: var(--fiolet);
-  border: 1px solid var(--fiolet);
+  color: var(--fiolet-tekst);
+  border: 1px solid var(--fiolet-tekst);
 }
 
 .btn-maly {
@@ -245,7 +403,7 @@ textarea {
   font-family: inherit;
   font-size: 0.95rem;
   color: var(--tekst);
-  background: #fff;
+  background: var(--tlo-pole);
 }
 
 input:focus,
@@ -345,7 +503,7 @@ textarea {
 
 .typ[aria-pressed="true"] .typ-kolo {
   background: var(--zielen);
-  color: #fff;
+  color: var(--na-kolorze);
   width: 5rem;
   height: 5rem;
   font-size: 2rem;
@@ -368,7 +526,7 @@ textarea {
   height: 2.3rem;
   border-radius: 8px;
   border: 2px solid currentColor;
-  background: #fff;
+  background: var(--tlo-pole);
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
@@ -387,20 +545,20 @@ textarea {
 }
 
 .skala-btn[aria-pressed="true"] span {
-  color: #fff;
+  color: var(--na-kolorze);
 }
 
-.s0 { color: #2f7fd1; }
-.s1 { color: #35a86b; }
-.s2 { color: #4aa85c; }
-.s3 { color: #66a44f; }
-.s4 { color: #8a8b3f; }
-.s5 { color: #a08b3a; }
-.s6 { color: #b07a3a; }
-.s7 { color: #bd6238; }
-.s8 { color: #c44f34; }
-.s9 { color: #cc3a30; }
-.s10 { color: #d32f2f; }
+.s0 { color: var(--s0); }
+.s1 { color: var(--s1); }
+.s2 { color: var(--s2); }
+.s3 { color: var(--s3); }
+.s4 { color: var(--s4); }
+.s5 { color: var(--s5); }
+.s6 { color: var(--s6); }
+.s7 { color: var(--s7); }
+.s8 { color: var(--s8); }
+.s9 { color: var(--s9); }
+.s10 { color: var(--s10); }
 
 /* ------------------------------------------------------------ karty/box */
 
@@ -422,7 +580,7 @@ textarea {
 
 .karta-tytul {
   font-weight: 700;
-  color: var(--fiolet);
+  color: var(--fiolet-tekst);
 }
 
 /* ------------------------------------------------------------- liczniki */
@@ -539,12 +697,12 @@ textarea {
 
 .znacznik-ja {
   background: var(--zielen);
-  color: #fff;
+  color: var(--na-kolorze);
 }
 
 .znacznik-serce {
   background: var(--czerwien);
-  color: #fff;
+  color: var(--na-kolorze);
 }
 
 .znacznik-szary {
@@ -572,7 +730,7 @@ textarea {
 
 .mapa-naglowek > div {
   background: var(--fiolet);
-  color: #fff;
+  color: var(--na-kolorze);
   font-weight: 700;
   padding: 0.6rem 0.85rem;
   font-size: 0.9rem;
@@ -615,7 +773,7 @@ textarea {
 }
 
 .mapa-emocja:hover {
-  background: #eaf7f1;
+  background: var(--hover-mapy);
   border-color: var(--zielen);
 }
 
@@ -692,7 +850,7 @@ textarea {
 .modal-tlo {
   position: fixed;
   inset: 0;
-  background: rgba(24, 20, 45, 0.55);
+  background: var(--zaslona);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -702,12 +860,12 @@ textarea {
 }
 
 .modal {
-  background: #fff;
+  background: var(--tlo-modal);
   border-radius: var(--promien);
   max-width: 62rem;
   width: 100%;
   padding: 1.5rem;
-  box-shadow: 0 12px 40px rgba(20, 20, 40, 0.25);
+  box-shadow: var(--cien-modal);
 }
 
 .modal-naglowek {
@@ -716,6 +874,21 @@ textarea {
   align-items: baseline;
   gap: 1rem;
   margin-bottom: 1rem;
+}
+
+.przelacznik-motywu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--ramka);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  background: var(--tlo);
+}
+
+.przelacznik-motywu:hover {
+  text-decoration: none;
+  border-color: var(--zielen);
 }
 
 /* ---------------------------------------------------------- materiały  */
@@ -776,7 +949,7 @@ textarea {
 
 .materialy-pozycja[aria-current="true"] {
   background: var(--fiolet);
-  color: #fff;
+  color: var(--na-kolorze);
   font-weight: 600;
 }
 
@@ -863,7 +1036,7 @@ textarea {
 
 .definicje dt {
   font-weight: 700;
-  color: var(--fiolet);
+  color: var(--fiolet-tekst);
 }
 
 .definicje dd {
@@ -882,7 +1055,7 @@ textarea {
 
 .tabela-materialow th {
   background: var(--fiolet);
-  color: #fff;
+  color: var(--na-kolorze);
   border-bottom: none;
   font-size: 0.82rem;
   text-transform: uppercase;

@@ -27,6 +27,10 @@ Emocji oraz eksport danych.
   procedurę w trakcie wypełniania sesji, nie tracąc niezapisanego formularza.
 - **Liczniki postępu** — sesje własne, sesje z kontynuacją, usunięte Mury Serca, sesje
   ze zwierzętami. Cele są edytowalne w Ustawieniach (domyślnie wymagania Poziomu 1).
+- **Tryb ciemny** — przełącznik w górnym pasku: Auto (za ustawieniem systemu), Jasny,
+  Ciemny. Wybór zapamiętuje się w przeglądarce i jest przywracany, zanim strona zdąży
+  się narysować, więc nie ma mignięcia białym tłem. Wydruki i raporty PDF zawsze
+  wychodzą na jasnym tle, niezależnie od wybranego motywu.
 - **Raport sesji** — czytelny wydruk do zapisania jako PDF lub wysłania klientowi.
 - **Eksport i kopia zapasowa** — pełna kopia JSON (z odtwarzaniem) oraz zestawienie CSV,
   jeden wiersz na uwolnioną emocję, gotowe do otwarcia w Excelu.
@@ -90,6 +94,7 @@ src/
   lib/
     emocje.ts             katalog 60 emocji (PL/EN, wiersz, kolumna) i 6 rodzajów emocji
     materialy.ts          treść materiałów Poziomu 1 w postaci bloków do wyświetlenia
+    motyw.ts              tryb jasny/ciemny/auto i skrypt bez mignięcia
     db.ts                 połączenie SQLite i schemat bazy
     dane.ts               odczyt i zapis danych
     akcje.ts              akcje formularzy wraz z walidacją
